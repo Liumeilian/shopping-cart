@@ -1,0 +1,47 @@
+@import "variable";
+
+.product-type{
+  .food-content:last-child{
+    border-bottom: none;
+  }
+}
+.food-content{
+  @extend .display-flex;
+  position: relative;
+  margin:0 pxToRem(30);
+  padding:pxToRem(40) 0;
+  border-bottom: 1px solid #e8e7e7;
+  
+  .food-pic{
+    display: flex;
+    align-items: center;
+    flex-grow:0;
+    width:25%;
+    
+    img{
+      width:100%;
+    }
+  }
+
+  .food-cont{
+    flex-grow:5;
+    margin-left:pxToRem(50);
+    
+    .food-name{
+      font-size:pxToRem(80);
+    }
+    .food-desc{
+     @extend .product-sub-cont;
+    }
+    .food-cont-sub1{
+       @extend .product-sub-cont;
+      span{
+        margin-right:pxToRem(20);
+      }
+    }
+    .food-price{
+      color:#fe4d3d;
+      font-size:pxToRem(70);
+    }
+  }
+}

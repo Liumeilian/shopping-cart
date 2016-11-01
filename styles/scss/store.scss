@@ -1,0 +1,26 @@
+@import "variable";
+
+.store-name{
+  position: fixed;
+  top:0px;
+  z-index: 999;
+  padding: pxToRem(20) 0;
+  border-bottom: 1px solid #d0c8c8;
+  width: 100%;
+  background-color:#fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: pxToRem(90);
+}
+.store-product{
+  margin: 40px 0 50px;
+}
+.store-cart{
+  position: fixed;
+  bottom:0px;
+  height: 50px;
+  z-index: 999;
+  border-top:1px solid #d0c8c8;
+  width:100%;
+  background-color: rgba(255,254,253,1);
+}

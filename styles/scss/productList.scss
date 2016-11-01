@@ -1,0 +1,17 @@
+@import "variable";
+
+.main-content{
+  @extend .display-flex;
+  
+  .type-content{
+    flex-grow:2;
+    margin-left: 80px;
+  }
+}
+
+.list-name{
+  background-color: whitesmoke;
+  font-size: pxToRem(70);
+  padding: 3px 5px;
+  color:#797979
+}

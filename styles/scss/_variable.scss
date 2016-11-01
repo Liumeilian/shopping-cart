@@ -1,0 +1,40 @@
+
+$GLOBECOLOR:#ffd900;
+$ACTIVETEXTCOLOR:#f99b00;
+
+/*****variable**********/
+.display-flex {
+  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+}
+
+.product-sub-cont{
+  margin-top:pxToRem(30);
+  font-size:pxToRem(60);
+  color:#a1a1a1;
+}
+
+.button-circle-25{
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  border: none;
+  font-size:pxToRem(70);
+}
+
+/*******mixin***********/
+@mixin backgroundImage($url){
+  background-image: url($url);
+  background-position:center center;
+  background-size:contain;
+  background-repeat: no-repeat;
+}
+
+
+/****function*******/
+@function pxToRem($px, $base: 72) {
+  @return ($px / $base) * 1rem;
+}
