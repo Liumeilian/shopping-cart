@@ -10,7 +10,7 @@ function getSumPrice(chooseProduct){
   return chooseProduct.reduce((prev,cur)=>{return prev+=cur.count*cur.price},0)
 }
 
-function product(state=InitialState,action){
+function product(state=InitialState.allProduct,action){
 
   switch(action.type){
     case types.ADD_PRODUCT:
@@ -46,14 +46,12 @@ function product(state=InitialState,action){
       })
       return Object.assign([],newState);
     }
-    case types.CHANGE_ACTIVE_TYPE:
-      return Object.assign([],state);
     default:
-      return state.allProduct
+      return state
   }
 }
 
-function cart(state=InitialState,action){
+function cart(state=InitialState.cart,action){
   let newProduct = action.product;
   
   switch(action.type){
@@ -90,17 +88,16 @@ function cart(state=InitialState,action){
         chooseProduct:copyList
       })
     }
-    case types.CHANGE_ACTIVE_TYPE:
-      return Object.assign([],state);
     default:
-      return state.cart
+      return state
   }
 }
 
-function type(state=InitialState,action){
+function type(state=InitialState.allProduct.map(product => {return {name:product.name,active:product.active}}),action){
   switch(action.type){
     case types.CHANGE_ACTIVE_TYPE:
       let newState = []
+      console.log(state)
       state.map(type=>{
         let copyType = Object.assign({},type);
         if(copyType.name==action.name){
@@ -111,12 +108,8 @@ function type(state=InitialState,action){
         newState.push(copyType);
       })
       return Object.assign([],newState);
-    case types.ADD_PRODUCT:
-      return state;
-    case types.SUB_PRODUCT:
-      return state;
     default:
-      return state.allProduct.map(product => {return {name:product.name,active:product.active}});
+      return state;
   }
 }
 
