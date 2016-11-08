@@ -35,6 +35,17 @@ export default {
             count:0,
             price:200
           }]
+      },{
+        name:'饮料',
+        active:'',
+        productList:[{
+            img:'http://p0.meituan.net/100.100.90/xianfu/02cd38a0540a2e8eafd5a6827d3f1ee810240.jpg.webp',
+            name:'雪碧',
+            desc:'柠檬味',
+            contSub:{sellCount:200,upvote:100},
+            count:0,
+            price:200
+          }]
       }
     ],
     cart:{

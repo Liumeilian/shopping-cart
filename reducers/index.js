@@ -93,28 +93,9 @@ function cart(state=InitialState.cart,action){
   }
 }
 
-function type(state=InitialState.allProduct.map(product => {return {name:product.name,active:product.active}}),action){
-  switch(action.type){
-    case types.CHANGE_ACTIVE_TYPE:
-      let newState = []
-      console.log(state)
-      state.map(type=>{
-        let copyType = Object.assign({},type);
-        if(copyType.name==action.name){
-          copyType.active='active';
-        }else{
-          copyType.active='';
-        }
-        newState.push(copyType);
-      })
-      return Object.assign([],newState);
-    default:
-      return state;
-  }
-}
+
 
 const rootReducer = combineReducers({
-  type,
   product,
   cart
 })

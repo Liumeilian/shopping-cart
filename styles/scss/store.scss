@@ -1,4 +1,4 @@
-@import "variable";
+
 
 .store-name{
   position: fixed;
@@ -13,7 +13,7 @@
   font-size: pxToRem(90);
 }
 .store-product{
-  margin: 40px 0 50px;
+  padding: pxToRem(170) 0 pxToRem(200);
 }
 .store-cart{
   position: fixed;

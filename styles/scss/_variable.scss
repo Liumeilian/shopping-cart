@@ -2,6 +2,21 @@
 $GLOBECOLOR:#ffd900;
 $ACTIVETEXTCOLOR:#f99b00;
 
+/*******mixin***********/
+@mixin backgroundImage($url){
+  background-image: url($url);
+  background-position:center center;
+  background-size:contain;
+  background-repeat: no-repeat;
+}
+
+
+/****function*******/
+@function pxToRem($px, $base: 72) {
+  @return ($px / $base) * 1rem;
+}
+
+
 /*****variable**********/
 .display-flex {
   display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
@@ -25,16 +40,4 @@ $ACTIVETEXTCOLOR:#f99b00;
   font-size:pxToRem(70);
 }
 
-/*******mixin***********/
-@mixin backgroundImage($url){
-  background-image: url($url);
-  background-position:center center;
-  background-size:contain;
-  background-repeat: no-repeat;
-}
 
-
-/****function*******/
-@function pxToRem($px, $base: 72) {
-  @return ($px / $base) * 1rem;
-}
