@@ -9,7 +9,7 @@ class Index extends Component{
     let {count,price} = this.props; 
     return (
       <div>
-        <div className="store-name">张姐烤肉拌饭
+        <div className="store-name">严选商品限时购
         </div>
         <div className="store-product" >
           {this.props.children}

@@ -8,12 +8,44 @@ import ListItemTag from '../components/ListItemTag'
 
 class ContestList extends Component{
 
+  constructor(props){
+    super(props);
+    this.productTypeList = [];
+    this.typeList = [];
+    this.mouseWheelHandler = this.mouseWheelHandler.bind(this);
+  }
+
+  componentDidMount(){
+    let itemTypeNode = document.querySelectorAll('.list-item-tag');
+    let itemTypeList = Array.from(itemTypeNode);
+    itemTypeList.map(item =>( 
+      item.addEventListener('click',(event => {
+          let target = event.currentTarget;
+          this.changeActiveType(target);
+
+          let activeType = document.querySelector('.list-item-tag.active');
+          let activeTypeId = activeType.dataset.typeid;
+
+          let typeList = this.productTypeList;
+          var scrollTop = 0;
+          for(let index in typeList){
+            if(typeList[index].id != activeTypeId){
+              scrollTop+= typeList[index].clientHeight;
+            }else{
+              break;
+            }
+          }
+          document.body.scrollTop = scrollTop;
+        }),false)
+      ))
+
+    this.productTypeList = Array.from(document.querySelectorAll('.product-type'));
+    this.typeList = Array.from(document.querySelectorAll('.list-item-tag'));
+  }
 
   changeActiveType(activeType){
-    let typeList = document.querySelectorAll('.list-item-tag');
-    for(let type of typeList){
-      type.classList.remove('active');
-    }
+   
+    this.typeList.map(type => type.classList.remove('active'));
     activeType.classList.add('active')
   }
 
@@ -24,12 +56,12 @@ class ContestList extends Component{
       event.preventDefault();
       return;
     }
-    var scrollTop = document.body.scrollTop;
-    let productTypeList = document.querySelectorAll('.product-type');
-    for(let type of productTypeList){
-      if(scrollTop<type.offsetTop){
-        var _id = type.id;
-        var activeType = document.querySelector(`[data-typeid=${_id}]`)
+    let scrollTop = document.body.scrollTop;
+    let productTypeList = this.productTypeList;
+    for(let i = 0,len = productTypeList.length;i<len;i++){
+      if(scrollTop<productTypeList[i].offsetTop){
+        let _id = productTypeList[i].id;
+        let activeType = document.querySelector(`[data-typeid=${_id}]`)
         if(activeType && !activeType.classList.contains('active')){
           let typeList = document.querySelectorAll('.list-item-tag');
           this.changeActiveType(activeType);
@@ -39,34 +71,27 @@ class ContestList extends Component{
     }
   }
 
-  clickHandler(event){
-    let $target = event.target;
-    let $parentNode = $target.parentNode;
-    if($target.classList.contains('list-item-tag')){
-      this.changeActiveType($target);
-    }else if($parentNode.classList.contains('list-item-tag')){
-      this.changeActiveType($parentNode);
-    }else if($parentNode.parentNode.classList.contains('list-item-tag')){
-      this.changeActiveType($parentNode.parentNode);
-    } 
-  }
-
   render(){
     
-    let allProduct = this.props.allProduct;
-    let typeList = allProduct.map(product=>{return {name:product.name,active:product.active}})
+    let {allType} = this.props;
+    let typeList = [],typeNodeList = [];
+    for(let typeId in allType){
+      typeList.push({
+        typeId:typeId,
+        name:allType[typeId].name
+      })
+      typeNodeList.push(
+        <ProductType index={typeId} key={typeId}></ProductType>
+      )
+    }
 
     return(
       <div className="main-content" onWheel={this.mouseWheelHandler} onTouchMove={this.mouseWheelHandler}>
-        <div className="type-list" onClick={this.clickHandler.bind(this)}>
+        <div className="type-list" >
           <ListItemTag typeList={typeList}></ListItemTag>
         </div>
         <div className="type-content">
-          {
-            allProduct.map((product,key)=>{
-              return <ProductType index={key} key={key}></ProductType>
-            })
-          }
+          { typeNodeList }
         </div>
       </div>
     )
@@ -75,7 +100,7 @@ class ContestList extends Component{
 
 function mapStateToProps(state) {
   return {
-    allProduct:state.product
+    allType:state.product
   }
 }
 

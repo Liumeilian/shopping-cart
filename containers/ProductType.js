@@ -12,15 +12,21 @@ class ProductType extends Component{
   
   render(){
     let {name,productList,index} = this.props;
+    let productNodeList = [];
+    for(let proId in productList){
+        let product = productList[proId]
+        productNodeList.push(
+          <Product 
+          content = {product} 
+          addHandler={()=>this.props.addProductToCarts(product)} 
+          subHandler={()=>this.props.removeProductFromCart(product)}
+          key={proId}
+          />
+        )
+    }
     return(
       <ProductList name={name} index={index}>
-        {productList.map((product,key)=>
-            <Product 
-              content = {product} 
-              addHandler={()=>this.props.addProductToCarts(product)} 
-              subHandler={()=>this.props.removeProductFromCart(product)}
-              key={key} />
-        )}
+        { productNodeList }
       </ProductList>
     )
   }
