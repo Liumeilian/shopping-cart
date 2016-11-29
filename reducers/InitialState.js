@@ -87,9 +87,7 @@ export default {
       }
     }
   },
-  cart: {
-    chooseProduct: []
-  }
+  cart: []
 
   /**
    * cart:{
