@@ -1,0 +1,30 @@
+.m-menu{
+    position: fixed;
+    z-index: 999;
+    margin-top: pxToRem(180);
+    width: 100%;
+    height: pxToRem(144);
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+    font-size: pxToRem(70);
+    .m-menuItem{
+        flex-grow:1;
+        text-align: center;
+        height: pxToRem(144);
+        a{
+            display: inline-block;
+        }
+        span{
+            height: pxToRem(144);
+            line-height: pxToRem(144);
+            display: inline-block;
+            color:#333;
+        }
+        .active{
+            border-bottom: 4px solid #ffd900;
+        }
+    }
+}

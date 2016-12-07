@@ -12,7 +12,7 @@ export default class ListItemTag extends Component{
         <ul>
           {
             typeList.map((type,key)=>{
-              return <ItemTag name={type.name} active={key==0?'active':''} index={key} key={key} />
+              return <ItemTag name={type.name} active={key==0?'active':''} index={type.typeId} key={key} />
             })
           }
         </ul>
